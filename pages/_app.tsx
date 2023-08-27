@@ -10,9 +10,10 @@ import {
   polygon,
   polygonMumbai
 } from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
+// import { publicProvider } from 'wagmi/providers/public';
 import { authenticate, generateChallenge } from './../utils/utils';
 import { useState } from 'react';
+import { jsonRpcProvider } from '@wagmi/core/providers/jsonRpc'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
@@ -21,7 +22,13 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     polygonMumbai,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === 'true' ? [polygonMumbai] : []),
   ],
-  [publicProvider()]
+  [
+    jsonRpcProvider({
+      rpc: (chain) => ({
+        http: `https://rpc.ankr.com/polygon_mumbai`
+      }),
+    }),
+  ],
 );
 
 const { connectors } = getDefaultWallets({

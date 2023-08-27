@@ -1,19 +1,22 @@
+'use client'
+
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { useAccount } from 'wagmi'
 
 
-const API_URL = 'https://api.lens.dev'
+const API_URL = 'https://api-sandbox-mumbai.lens.dev'
 
 /* create the API client */
 export const client = new ApolloClient({
   uri: API_URL,
   cache: new InMemoryCache()
 })
-
+const { address, isConnected, isDisconnected } = useAccount();
 /* define a GraphQL query  */
 export const defaultProfile = gql`
 query DefaultProfile {
   defaultProfile(
-    request: { ethereumAddress: "0x64F53914013ADcE581B2EA9f8E335D50996646b6" }
+    request: { ethereumAddress: ${address} }
   ) {
     id
     name
