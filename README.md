@@ -1,8 +1,29 @@
+## Lens Phite
+ - It's a Onchain Game in which your lens State acts as your score.
+ - A game of Stat vs Stat for 2 Lens profiles to compete with the stat total they have on their Lens profile
+ - Your total score depends on :
+    - Your Posts
+    - Your Following
+    - Your Followers
+ - We are fetching above data from a Lens oracle deployed on Phala Network.
+ - A consumer contract is deployed on Polygon-Mumbai to fetch data from Lens Oracle(https://mumbai.polygonscan.com/address/0x8a0ed779d131dAe2Ca8b0a7606e02944Ee611F79) .
+ - If your score is greater , you win.
+
+ ## The winner's score is updated in a Unique Nft with onChain Score ,and everytime a user wins,the score is updated .
+ - Collection : https://mumbai.polygonscan.com/token/0x16cb27eb3b6e2c3da78e08f54f41b329a6c0b1f3
+
+ - The oponent is selected randomly .
+
+## Instructions : 
 This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
 
 ## Getting Started
 
-First, run the development server:
+First, Install packages:
+```bash
+npm install
+```
+run server :
 
 ```bash
 npm run dev
@@ -10,20 +31,3 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about this stack, take a look at the following resources:
-
-- [RainbowKit Documentation](https://rainbowkit.com) - Learn how to customize your wallet connection flow.
-- [wagmi Documentation](https://wagmi.sh) - Learn how to interact with Ethereum.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn how to build a Next.js application.
-
-You can check out [the RainbowKit GitHub repository](https://github.com/rainbow-me/rainbowkit) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
