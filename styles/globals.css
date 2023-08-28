@@ -1,37 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-} */
 .customText {
   color: yellow;
   text-shadow: 5px 4px 0 #da3333;
   color: yellow;
   }
 
-.css-button-3d--red {
+.play-battle-btn {
   min-width: 150px;
   height: 50px;
   color: #fff;
@@ -47,12 +27,61 @@ body {
   background: #ef233c;
   box-shadow: 0 5px #d90429;
 }
-.css-button-3d--red:hover {
+.play-battle-btn:hover {
   box-shadow: 0 3px #d90429;
   top: 1px;
 }
-.css-button-3d--red:active {
+.play-battle-btn:active {
   box-shadow: 0 0 #d90429;
+  top: 5px;
+}
+.index-mint-btn {
+  min-width: 150px;
+  height: 50px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #2980b9;
+  background: #0097b2;
+  box-shadow: 0 5px #f1c40f;
+}
+.index-mint-btn:hover {
+  box-shadow: 0 3px #f1c40f;
+  top: 1px;
+}
+.index-mint-btn:active {
+  box-shadow: 0 0 #f1c40f;
+  top: 5px;
+}
+.index-battle-btn {
+  min-width: 150px;
+  height: 50px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  border: none;
+  background: #e14356;
+  box-shadow: 0 5px #f1c40f;
+}
+.index-battle-btn:hover {
+  box-shadow: 0 3px #f1c40f;
+  top: 1px;
+}
+.index-battle-btn:active {
+  box-shadow: 0 0 #f1c40f;
   top: 5px;
 }
 .drop-shadow-lg {
@@ -61,4 +90,14 @@ body {
 
 .transition-transform {
   transition: transform 0.5s ease; 
+}
+
+
+.card {
+background: rgba( 108, 107, 107, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 9px );
+-webkit-backdrop-filter: blur( 9px );
+border-radius: 10px;
+border: 2px solid rgba( 255, 255, 255, 0.18 );
 }

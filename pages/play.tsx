@@ -9,8 +9,11 @@ import { Contract, ethers } from "ethers";
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { abi3 } from "../utils/phatAbi";
 import { abi4 } from '../utils/message';
+import useWindowSize from 'react-use/lib/useWindowSize'
+import Confetti from 'react-confetti'
+import { ToastContainer, toast } from 'react-toastify';
 
-
+const buttonClickSound = '/sounds/smb_coin.mp3';
 
 function Play() {
   const [handle, setHandle] = useState('');
@@ -20,11 +23,13 @@ function Play() {
   const [secondId, setsecondId] = useState('');
   const [score1, setScore1] = useState(0);
   const [score2, setScore2] = useState(0);
+  const [winner, setWinner] = useState(false);
   const[secondAddress,setSecondAddress] = useState("");
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const { width, height } = useWindowSize()
   // Animation and battle function
   const abi_OueryOracle = abi2;
-  const contractAddress_OueryOracle = '0x8a0ed779d131dAe2Ca8b0a7606e02944Ee611F79';
+  const contractAddress_OueryOracle = '0x7cB6d43f344245BF480C4a931894cc4e68834795';
 
 
   // Other parts
@@ -36,8 +41,8 @@ function Play() {
   const playedOnce = 0;
 
 
- const users = ["0x01", "0x7a", "0x8fef", "0x02", "0x015", "0x3aed", "0x06", "0x0202"]
-//const users = ["0x8fef"];
+ // const users = ["0x01", "0x7a", "0x8fef", "0x02", "0x015", "0x3aed", "0x06", "0x0202"]
+const users = ["0x02","0x8fef", "0x7a"];
   // const { address, isConnected, isDisconnected } = useAccount();
   // const address = data?.address;
   var response;
@@ -87,17 +92,20 @@ const writen = await contractWrite.request(pid);
     contractRead.on('ResponseReceived', (id, pair, value) => {
       var score = parseInt(value._hex, 16);
       console.log("Idd:",id,"pair",pair,"score",score);
-       if (pid == pair) {
+       if (pair == pid) {
 
         setScore1(score);
       console.log("Socre1:", score1);
 
-      } else {
+      } 
+      if(pair == secondId) {
 
         setScore2(score);
       console.log("Socre2:", score2);
+      contractRead.off('ResponseReceived', (id, pair, value))
 
-        mintNft();
+  mintNft();
+
       }
  
 
@@ -297,22 +305,43 @@ type
 
     const nftContract ="0x16cb27EB3B6e2c3dA78e08f54F41b329a6C0B1F3"
     const contractWrite2 = new ethers.Contract(nftContract, abi4, signer);
-console.log("Adderss 2nd",secondAddress);
+//console.log("Adderss 2nd",secondAddress);
     setProfile("oo");
       if(score1 > score2 && score2 != 0){
        console.log('Player 1 is winner')
        alert("Winner is Player 1");
        const writen2 = await contractWrite2.train();
+       //setWinner(true) 
+/*        toast.success('You Won 🥳🎉', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        }); */
      } 
-     else if (score1 == score2 && score1 != 0){
+     if (score1 == score2 && score1 != 0){
        console.log("That's a Draw")
        alert("That's a Draw");
 
        const writen2 = await contractWrite2.train();
        const writen3 = await contractWrite2.trainop(secondAddress,{gasLimit: 5000000});
 
+/*        toast.success('Match Draw 🫡', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        }); */
      } 
-      else if(score2 > score1 ){
+      if(score2 > score1 ){
        console.log('Player 2 is winner')
        alert("Winner is Player 2");
 
@@ -320,103 +349,48 @@ console.log("Adderss 2nd",secondAddress);
 
        const writen3 = await contractWrite2.trainop(secondAddress,{gasLimit: 5000000});
         console.log("Hash 3",writen3.hash);
+/* 
+        toast.success('You Lost 😑', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          }); */
      } 
-     else{}
   }
-  //second O 0xa6Ca3642794a03Bf4F13dD404571Da2dAE29916d
-/*   function getdata() {
-    var contract = "0xa6ca3642794a03bf4f13dd404571da2dae29916d";
-    const provider = new ethers.providers.WebSocketProvider("wss://frequent-solitary-cherry.matic-testnet.discover.quiknode.pro/d4eddd3fb5a80ca6014416b9f38fdac88d9333a2/")
-    const contractRead = new ethers.Contract(contract, abi2, provider);
-    contractRead.on('ResponseReceived', (id, pair, value) => {
-      var score = parseInt(value._hex, 16);
-      console.log("Idd:",id,"pair",pair);
-       if (pid == pair) {
-        setScore1(score);
-      } else {
-        setScore2(score);
-      }
-      console.log("Socre1:", score1);
-      console.log("Socre2:", score2);
- 
-      contractRead.off('ResponseReceived', (id, pair, value));
-      //return score;
-      // process.exit(0);
-
-    })
-  } */
-
-  // useEffect(() => {
-  //     fetchProfiles()
-  // }, [address, isConnected])
-
-  // async function fetchProfiles() {
-  //     try {
-  //         /* fetch profiles from Lens API */
-  //         let response = await client.query({ query: defaultProfile })
-  //         /* return profiles with profile pics  */
-
-  //         console.log(response.data.defaultProfile);
-  //         console.log(address)
-
-  //     } catch (err) {
-  //         console.log({ err })
-  //     }
-  // }
 
   return (
-    // <div className="flex flex-col items-center justify-center h-5/6 border-2 border-gray-800">
-    //     play game here
-    //     {/* {!signedIn && (
-    //         <button onClick={signIn} className='mt-2'>
-    //             Login with Lens
-    //         </button>
-    //     )} */}
+    <>
 
-    //     <div className="flex flex-col lg:flex-row lg:max-w-5xl w-full lg:mb-0 lg:grid-cols-2 items-center justify-center border-2 border-blue-800 my-32 gap-10 lg:gap-20 bg-[url('/images/battle-arena.png')] bg-[55%]">
-    //         {/* <div>{address}</div> */}
-    //         <div className="group rounded-lg border border-transparent px-5 py-4 border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30 h-96 w-64">
-    //             <h2 className={`mb-3 text-2xl font-semibold text-primary-100`}>
-    //                 Player 1
-    //             </h2>
-    //             <TextCircle />
-    //         </div>
-    //             <div>
-    //                 <h1 className="text-5xl font-extrabold tracking-tight leading-none text-gray-200">VS</h1>
-    //             </div>
-    //         <div className="group rounded-lg border border-transparent px-5 py-4 border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30 h-96 w-64">
-    //             <h2 className={`mb-3 text-2xl font-semibold text-primary-100`}>
-    //                 Player 2
-    //             </h2>
-    //             <TextCircle />
-    //         </div>
-    //     </div>
-    // </div>
     <div className="w-9/12 h-4/6 mt-6 flex items-start justify-between bg-black bg-[url('/images/battle-arena.png')] bg-[55%]">
-      {/* <div className='h-full w-full rounded-lg border border-transparent px-5 py-4 border-gray-300 dark:border-neutral-700 dark:bg-neutral-800/30'>Player 1</div>
-            <div className='h-full w-full bg-red'>vs</div>
-            <div className='h-full w-full bg-black'>PLAyer 2</div> */}
-
-      <div className="w-4/12 p-2 ml-10 mt-10 bg-neutral-800/30 border border-gray-200 rounded-lg shadow sm:p-8 text-primary-100">
-        <h5 className="text-xl font-bold ">{handle}</h5>
-        <h5 className="text-xl font-bold ">{score1}</h5>
-        <p className="text-bas ">{pid}</p>
+{/*     {winner && <Confetti
+      width={width}
+      height={height}
+    />} */}
+      <div className="w-4/12 p-2 ml-10 mt-10 card sm:p-8 text-primary-100">
+        <h5 className="text-xl font-bold font-jose">{handle}</h5>
+        <h5 className="text-xl font-bold font-jose">{score1}</h5>
+        <p className="text-base font-jose">{pid}</p>
       </div>
       <img src='/images/avatar-left.png' alt='avtar head' className={`rounded-full filter drop-shadow-lg ${isButtonClicked ? 'translate-x-16 transition-transform' : ''
         }`} width={225} height={225} />
       <div className='self-center'>
-        <h1 className="text-7xl mb-5 text-center font-extrabold tracking-tight leading-none customText">VS</h1>
-        <button onClick={handleEvent} className='css-button-3d--red'>BATTLE</button>
+        <h1 className="text-8xl mb-5 text-center font-extrabold tracking-tight leading-none customText font-vt">VS</h1>
+        <button onClick={handleEvent} className='play-battle-btn font-jose'>BATTLE</button>
       </div>
       <img src='/images/avatar-right.png' alt='avtar head' className={`rounded-full filter drop-shadow-lg ${isButtonClicked ? '-translate-x-16 transition-transform' : ''
         }`} width={225} height={225} />
-      <div className="w-4/12 p-2 mr-10 mt-10 bg-neutral-800/30 border border-gray-200 rounded-lg shadow sm:p-8 text-primary-100">
-        <h5 className="text-xl font-bold ">{secondP}</h5>
-        <h5 className="text-xl font-bold ">{score2}</h5>
-        <p className="text-bas ">{secondId}</p>
+      <div className="w-4/12 p-2 mr-10 mt-10 card sm:p-8 text-primary-100">
+        <h5 className="text-xl font-bold font-jose">{secondP}</h5>
+        <h5 className="text-xl font-bold font-jose">{score2}</h5>
+        <p className="text-base font-jose">{secondId}</p>
       </div>
-
     </div>
+    </>
   )
 }
 export default Play
