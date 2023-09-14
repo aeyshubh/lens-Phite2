@@ -70,7 +70,7 @@ let a:any = 'staging;'
   }
 
   //const users = ["0x01", "0x7a", "0x8fef", "0x02", "0x015", "0x3aed", "0x06", "0x0202"]
-  const users = ["0x8fef","0x8fef","0x8fef"]
+  const users = ["0x8fef","0x7a","0x3aed"]
   //const users = ["0x02","0x8fef", "0x7a"];
   // const { address, isConnected, isDisconnected } = useAccount();
   // const address = data?.address;
