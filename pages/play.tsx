@@ -115,8 +115,26 @@ const specialAttacks = async() =>{
 
   alert("------Score Updated-------")
   if(n1 == 'Fire' && n2 == 'Water'){
-    alert("Giving 2000 HP to Player 1")
-    temp = Number(a1)+ Number(a2)+ Number(a3);
+    alert("Giving 1000 HP to Player 1 due to Power")
+    temp = 1000 + Number(a1)+ Number(a2)+ Number(a3);
+    alert(`Special Attack Score = ${temp}`);
+    if(temp>score2){
+      alert("Player 1 Wins with Special powers");
+     const writen3 = await contractWrite2.trainop(address, { gasLimit: 5000000 });
+      console.log("Hash 3", writen3.hash);
+       sendNotification(handle,secondP,n1,temp)
+    }else{
+      alert("Player 2 Wins");
+      setScore1(temp-score1)
+      const writen3 = await contractWrite2.trainop(secondAddress, { gasLimit: 5000000 });
+      console.log("Hash 3", writen3.hash);
+      sendNotification(secondP,handle,n2,score2.toString())
+
+    }
+  }
+  if(n1 == 'Earth' && n2 == 'Fire'){
+    alert("Giving 1000 HP to Player 1 Due to Power")
+    temp = 1000+Number(a1)+ Number(a2)+ Number(a3);
     alert(`Special Attack Score = ${temp}`);
     if(temp>score2){
       alert("Player 1 Wins with Special powers");
