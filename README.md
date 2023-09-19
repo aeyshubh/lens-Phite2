@@ -1,15 +1,15 @@
 ## Lens Phite V2 with On-Chain Notifications , Score Nft and Super Powers .
-![image](https://github.com/aeyshubh/lens-Phite2/assets/50445649/0e0c518a-1a1c-475d-91d1-b5f4015f9739)
+![image](https://github.com/aeyshubh/lens-Phite2/assets/50445649/cb8c7372-0fcf-46f4-8c00-601d813cdcff)
 
 - **[Youtube Demo]**(https://youtu.be/LESljBVa3OQ)
  - It's a Onchain Game in which your lens State acts as your score.
  - After Every Match a Notification is sent about the Match Result into the Push Channel about the winner)
  - -- Channel Address of **Live Push Channel**(https://staging.push.org/)(0x0dDda6871f1216D7EF56722167652e4F881d74Aa)
- - ![notif](https://github.com/aeyshubh/lens-Phite2/assets/50445649/f80dd9ce-3f4e-40b4-be64-e87da06a381a)
+![notif](https://github.com/aeyshubh/lens-Phite2/assets/50445649/8cda269b-cc80-4ff4-8bc1-f99c80f4ea61)
 
  - The Notification includes the Winner's Name,his Special power and his Score.
  - Now Lens Phite comes with Special Powers and Attacks fetched from API created by me through **Phala Network** .
- - ![api](https://github.com/aeyshubh/lens-Phite2/assets/50445649/2bc81011-ae0b-4e84-85fe-d0581ae609bd)
+![nft](https://github.com/aeyshubh/lens-Phite2/assets/50445649/b0a4defe-df46-42f0-87e7-81ebb6687e1d)
 
  - We are storing Attack Data Off-Chain to **save storage and cost** and then getting it on-Chain to perform various operations.
  - A game of Stats vs Stats for 2 Lens profiles to compete with the stat total they have on their Lens profile
@@ -27,8 +27,8 @@
  - [Polygon Consumer Contract](https://mumbai.polygonscan.com/address/0x3f235D6A85b138025037E211862A57433d5AC467) .
  - [Phala Dashboard](https://bricks-poc5.phala.network/workflows/0x4082228ace11b8d01982e03d6af89189bc73018305a53819f782697cf1aac453/2)
  - If your score is greater and Your Powers are good Enough, you win.
+![stats](https://github.com/aeyshubh/lens-Phite2/assets/50445649/ba5230cd-b72e-4467-b491-3eb2c28f8570)
 
-![stats](https://github.com/aeyshubh/lens-Phite2/assets/50445649/e982a31f-a267-4589-a098-950350c24397)
 
  ## The winner's score is updated in a Unique Nft with onChain Score ,and everytime a user wins,the score is updated .
  - OpenSea-Collection of Nfts : (https://testnets.opensea.io/collection/chain-battles-275)
