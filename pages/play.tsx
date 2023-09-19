@@ -40,7 +40,7 @@ const [n2,setn2] = useState('');
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   // Animation and battle function
   const abi_OueryOracle = abi2;
-  const contractAddress_OueryOracle = '0x3f235D6A85b138025037E211862A57433d5AC467';
+  const contractAddress_OueryOracle = '0x72479FBcF03C749D7687000a403Db2061c8cc475';
 
 
   const playedOnce = 0;
@@ -104,7 +104,7 @@ const specialAttacks = async() =>{
   provider.send('eth_requestAccounts', []);
   signer = provider.getSigner();
 
-  const nftContract = "0x16cb27EB3B6e2c3dA78e08f54F41b329a6C0B1F3"
+  const nftContract = "0xd9f4BC1A565646D7F737265dabD9631FC5Cd7994"
   const contractWrite2 = new ethers.Contract(nftContract, abi4, signer);
 
   setIsButtonClicked(true);
@@ -401,7 +401,7 @@ type
     provider.send('eth_requestAccounts', []);
     signer = provider.getSigner();
 
-    const nftContract = "0x16cb27EB3B6e2c3dA78e08f54F41b329a6C0B1F3"
+    const nftContract = "0xd9f4BC1A565646D7F737265dabD9631FC5Cd7994"
     const contractWrite2 = new ethers.Contract(nftContract, abi4, signer);
     //console.log("Adderss 2nd",secondAddress);
     if (score1 > score2 && score2 != 0) {
