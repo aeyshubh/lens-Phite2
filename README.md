@@ -24,8 +24,8 @@
   
  - We are fetching above data from a Lens oracle deployed on Phala Network with Lens Api and a Private Api created by me to store Off Chain Data..
  - A consumer contract is deployed on Polygon-Mumbai to fetch data from Lens Oracle .
- - [Polygon Consumer Contract](https://mumbai.polygonscan.com/address/0x3f235D6A85b138025037E211862A57433d5AC467) .
- - [Phala Dashboard](https://bricks-poc5.phala.network/workflows/0x4082228ace11b8d01982e03d6af89189bc73018305a53819f782697cf1aac453/2)
+ - [Polygon Consumer Contract](https://polygonscan.com/address/0x72479fbcf03c749d7687000a403db2061c8cc475) .
+ - [Phala Dashboard](https://bricks.phala.network/workflows/0x4fd7af9ef19ab4e15f38e0b094830e1d4b6f0e16afc199463aa61f098e22d149/0)
  - If your score is greater and Your Powers are good Enough, you win.
 ![stats](https://github.com/aeyshubh/lens-Phite2/assets/50445649/ba5230cd-b72e-4467-b491-3eb2c28f8570)
 
