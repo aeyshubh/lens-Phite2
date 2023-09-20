@@ -70,7 +70,7 @@ let a:any = 'staging;'
   }
 
   //const users = ["0x01", "0x7a", "0x8fef", "0x02", "0x015", "0x3aed", "0x06", "0x0202"]
-  const users = ["0x8fef","0x7a","0x3aed"]
+  const users = ["0x27f9","0x149d","0x015777"]
   //const users = ["0x02","0x8fef", "0x7a"];
   // const { address, isConnected, isDisconnected } = useAccount();
   // const address = data?.address;
@@ -79,7 +79,7 @@ let a:any = 'staging;'
   let signer;
   const { address, isConnected, isDisconnected } = useAccount();
   // const address = data?.address;
-  const API_URL = 'https://api-mumbai.lens.dev'
+  const API_URL = 'https://api.lens.dev/'
   const client = new ApolloClient({
     uri: API_URL,
     cache: new InMemoryCache()
@@ -93,10 +93,10 @@ let a:any = 'staging;'
       contractWrite = new ethers.Contract(contractAddress_OueryOracle, abi_OueryOracle, signer);
 
     }
-    if(score2 ==0){
+     if(score2 ==0){
       fetchProfiles(),
       fetchSecondProfile()
-    }
+    } 
 
   }, [score2])
 const specialAttacks = async() =>{
@@ -115,8 +115,8 @@ const specialAttacks = async() =>{
 
   alert("------Score Updated-------")
   if(n1 == 'Fire' && n2 == 'Water'){
-    alert("Giving 1000 HP to Player 1 due to Power")
-    temp = 1000 + Number(a1)+ Number(a2)+ Number(a3);
+    alert("Giving 2000 HP to Player 1")
+    temp = Number(a1)+ Number(a2)+ Number(a3);
     alert(`Special Attack Score = ${temp}`);
     if(temp>score2){
       alert("Player 1 Wins with Special powers");
@@ -132,9 +132,48 @@ const specialAttacks = async() =>{
 
     }
   }
-  if(n1 == 'Earth' && n2 == 'Fire'){
-    alert("Giving 1000 HP to Player 1 Due to Power")
-    temp = 1000+Number(a1)+ Number(a2)+ Number(a3);
+
+  if(n1 == 'Water' && n2 == 'Fire'){
+    alert("Giving 2000 HP to Player 1")
+    temp = Number(a1)+ Number(a2)+ Number(a3);
+    alert(`Special Attack Score = ${temp}`);
+    if(temp>score2){
+      alert("Player 1 Wins with Special powers");
+     const writen3 = await contractWrite2.trainop(address, { gasLimit: 5000000 });
+      console.log("Hash 3", writen3.hash);
+       sendNotification(handle,secondP,n1,temp)
+    }else{
+      alert("Player 2 Wins");
+      setScore1(temp-score1)
+      const writen3 = await contractWrite2.trainop(secondAddress, { gasLimit: 5000000 });
+      console.log("Hash 3", writen3.hash);
+      sendNotification(secondP,handle,n2,score2.toString())
+
+    }
+  }
+
+  if(n1 == 'Earth' && n2 == 'Water'){
+    alert("Giving 2000 HP to Player 1")
+    temp = Number(a1)+ Number(a2)+ Number(a3);
+    alert(`Special Attack Score = ${temp}`);
+    if(temp>score2){
+      alert("Player 1 Wins with Special powers");
+     const writen3 = await contractWrite2.trainop(address, { gasLimit: 5000000 });
+      console.log("Hash 3", writen3.hash);
+       sendNotification(handle,secondP,n1,temp)
+    }else{
+      alert("Player 2 Wins");
+      setScore1(temp-score1)
+      const writen3 = await contractWrite2.trainop(secondAddress, { gasLimit: 5000000 });
+      console.log("Hash 3", writen3.hash);
+      sendNotification(secondP,handle,n2,score2.toString())
+
+    }
+  }
+
+  if(n1 == 'Water' && n2 == 'Earth'){
+    alert("Giving 2000 HP to Player 1")
+    temp = Number(a1)+ Number(a2)+ Number(a3);
     alert(`Special Attack Score = ${temp}`);
     if(temp>score2){
       alert("Player 1 Wins with Special powers");
@@ -172,14 +211,16 @@ const specialAttacks = async() =>{
     const writen2 = await contractWrite.request(secondId);
     console.log("Written Two " + writen2.hash);
     //var contract = "0xa6ca3642794a03bf4f13dd404571da2dae29916d";
+    //const provider2 = new ethers.providers.WebSocketProvider(`wss://frequent-solitary-cherry.matic-testnet.discover.quiknode.pro/d4eddd3fb5a80ca6014416b9f38fdac88d9333a2/`)
     const provider2 = new ethers.providers.WebSocketProvider(`wss://polygon-mainnet.g.alchemy.com/v2/tSKnnoZdJypN1CsCxNqkMVRg5_bP2jh3`)
+    
     const contractRead = new ethers.Contract(contractAddress_OueryOracle, abi2, provider2);
     contractRead.on('ResponseReceived', async (id, pair, value,s1,s2,s3,nature) => {
-      var score = parseInt(value._hex, 16);
-      console.log("Idd:", id, "pair", pair, "score", score,"s1",s1,"s2",s2,"nature",nature);
+      //console.log("Idd:", id, "pair", pair, "score", score,"s1",s1,"s2",s2,"nature",nature);
       
       if (pair == pid && score1 == 0) {
-
+        var score = parseInt(value._hex, 16);
+        console.log("Scoress is",score);
         setScore1(score);
         setn1(nature);
         seta1(parseInt(s1._hex, 16))
@@ -189,15 +230,15 @@ const specialAttacks = async() =>{
 
       }
       if (pair == secondId && score2 == 0) {
-
-        await setScore2(score)
+        var score = parseInt(value._hex, 16);
+        setScore2(score)
         console.log("Socre2:", score2);
         setn2(nature);
         seta4(parseInt(s1._hex, 16))
         seta5(parseInt(s1._hex, 16))
         seta6(parseInt(s1._hex, 16))
 
-        // mintNft();
+         mintNft();
 
 /*         contractRead.off('ResponseReceived', (id, pair, value,s1,s2,s3,nature))
  */
@@ -280,7 +321,7 @@ query DefaultProfile {
         /* return profiles with profile pics  */
         setHandle(value.data.defaultProfile.handle)
         setId(value.data.defaultProfile.id)
-
+console.log("id is",pid);
         // write?.()
 
       })
@@ -404,6 +445,7 @@ type
     const nftContract = "0xd9f4BC1A565646D7F737265dabD9631FC5Cd7994"
     const contractWrite2 = new ethers.Contract(nftContract, abi4, signer);
     //console.log("Adderss 2nd",secondAddress);
+    console.log("In Mint S1:",score1)
     if (score1 > score2 && score2 != 0) {
       console.log('Player 1 is winner')
       alert("Winner is Player 1");
