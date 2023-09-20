@@ -172,7 +172,7 @@ const specialAttacks = async() =>{
     const writen2 = await contractWrite.request(secondId);
     console.log("Written Two " + writen2.hash);
     //var contract = "0xa6ca3642794a03bf4f13dd404571da2dae29916d";
-    const provider2 = new ethers.providers.WebSocketProvider(`wss://frequent-solitary-cherry.matic-testnet.discover.quiknode.pro/d4eddd3fb5a80ca6014416b9f38fdac88d9333a2/`)
+    const provider2 = new ethers.providers.WebSocketProvider(`wss://polygon-mainnet.g.alchemy.com/v2/tSKnnoZdJypN1CsCxNqkMVRg5_bP2jh3`)
     const contractRead = new ethers.Contract(contractAddress_OueryOracle, abi2, provider2);
     contractRead.on('ResponseReceived', async (id, pair, value,s1,s2,s3,nature) => {
       var score = parseInt(value._hex, 16);
