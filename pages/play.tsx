@@ -11,7 +11,7 @@ import * as PushAPI from "@pushprotocol/restapi";
 const buttonClickSound = '/sounds/smb_coin.mp3';
 
 function Play() {
-  const PK = '77ac6148efe43ae3797aed90c7e50c7c4c1c656b9f302fdd30284f0f74cef603'; // channel private key
+  const PK = 'You PK'; // channel private key
 const Pkey = `0x${PK}`;
 const _signer = new ethers.Wallet(Pkey);
 
