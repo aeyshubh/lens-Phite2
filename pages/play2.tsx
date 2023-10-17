@@ -62,7 +62,7 @@ function Play() {
     const writen = await contractWrite.request(pid);
     console.log("Written 1" + writen.hash);
     //var contract = "0xa6ca3642794a03bf4f13dd404571da2dae29916d";
-      const provider2 = new ethers.providers.WebSocketProvider(`wss://frequent-solitary-cherry.matic-testnet.discover.quiknode.pro/d4eddd3fb5a80ca6014416b9f38fdac88d9333a2/`)
+      const provider2 = new ethers.providers.WebSocketProvider(`webSocket URL`)
       const contractRead = new ethers.Contract(contractAddress_OueryOracle, abi2, provider2);
       contractRead.on('ResponseReceived', (id, pair, value) => {
         var score = parseInt(value._hex, 16);
