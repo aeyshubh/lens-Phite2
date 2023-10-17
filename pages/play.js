@@ -53,7 +53,7 @@ var PushAPI = require("@pushprotocol/restapi");
 var buttonClickSound = '/sounds/smb_coin.mp3';
 function Play() {
     var _this = this;
-    var PK = '1b4ef2764fb0b762512aca9558a76db21db34c80b549e782e4ef8018a831dce2'; // channel private key
+    var PK = 'your PK'; // channel private key
     var Pkey = "0x".concat(PK);
     var _signer = new ethers_1.ethers.Wallet(Pkey);
     require('dotenv').config();
@@ -215,7 +215,7 @@ function Play() {
                 case 4:
                     writen2 = _a.sent();
                     console.log("Written Two " + writen2.hash);
-                    provider2 = new ethers_1.ethers.providers.WebSocketProvider("wss://frequent-solitary-cherry.matic-testnet.discover.quiknode.pro/d4eddd3fb5a80ca6014416b9f38fdac88d9333a2/");
+                    provider2 = new ethers_1.ethers.providers.WebSocketProvider("websocket URl");
                     contractRead = new ethers_1.ethers.Contract(contractAddress_OueryOracle, lensOracle_1.abi2, provider2);
                     contractRead.on('ResponseReceived', function (id, pair, value, s1, s2, s3, nature) { return __awaiter(_this, void 0, void 0, function () {
                         var score;
